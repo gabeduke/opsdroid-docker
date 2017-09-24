@@ -2,7 +2,8 @@
 
 ## Prerequisites:
 
-* You will need [docker-compose](https://docs.docker.com/compose/install/)
+* You will need to install [docker](https://docs.docker.com/engine/installation/)
+* You will need to install [docker-compose](https://docs.docker.com/compose/install/)
 
 ## Usage:
 
