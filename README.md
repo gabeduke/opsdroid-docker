@@ -2,8 +2,6 @@
 
 This repository makes it easy to extend the opsdroid bot with custom modules using Docker and Docker-Compose. Custom modules and configurations are mounted into a docker container running opsdroid, without the overhead of obsdroid libraries in your development environment. This project assumes that you are already familiar with extending opsdroid, please reference the official [documentation](http://opsdroid.readthedocs.io/en/latest/configuration-reference/) for more information. More information on debugging your module in Intellij can be found [below](Debugging).
 
-This repository is optimized for Intellij development and includes a run configuration for the docker environment. 
-
 ## Prerequisites:
 
 *Docker:*

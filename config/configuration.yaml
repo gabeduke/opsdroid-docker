@@ -11,6 +11,8 @@
 ##  \___\___/|_| |_|_| |_|\__, |
 ##                        |___/
 ##
+
+## Host needs to be open to allow access outside of the docker container
 web:
   host: "0.0.0.0"
   port: 8080
