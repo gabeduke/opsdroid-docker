@@ -35,3 +35,8 @@ You will need the opsdroid packaged installed as a library in order to develop y
     * In terminal, get the image id for the container that was created `docker ps -aqf "name=opsdroid"`
     * In the Edit configurations menu, you will need to replace the image id with the referece from the previous step
     * You can now run the container directly through Intellij `Shift + F10` or debug `Shift + F9`
+    
+## Jenkins
+
+* After running compose up, get the first time token from docker logs `docker logs jenkins` and finish the install steps at [localhost:8081](http://localhost:8081/)
+* get your api token from [localhost:8081/me/configure](http://localhost:8081/me/configure)
