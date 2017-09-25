@@ -1,0 +1,11 @@
+version: "3"
+services:
+
+  opsdroid:
+    container_name: opsdroid
+    image: opsdroid/opsdroid:latest
+    volumes:
+      - "./config/:/etc/opsdroid:ro"
+      - "./modules/:/root/.opsdroid/modules/opsdroid-modules/skill"
+    ports:
+    - "8080:8080"
