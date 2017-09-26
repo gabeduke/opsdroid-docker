@@ -27,3 +27,4 @@ connectors:
 skills:
   - name: test
     path: /root/.opsdroid/modules/opsdroid-modules/skill/test
+    language: !include language.yaml

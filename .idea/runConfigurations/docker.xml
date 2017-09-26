@@ -6,7 +6,7 @@
                 <option name="command" value="" />
                 <option name="containerName" value="opsdroid" />
                 <option name="entrypoint" value="" />
-                <option name="imageTag" value="9e6f572081aa" />
+        <option name="imageTag" value="opsdroid/opsdroid:dev" />
                 <option name="linksExpanded" value="true" />
                 <option name="portBindings">
                     <list>
