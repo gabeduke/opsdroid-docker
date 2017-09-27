@@ -1,20 +1,33 @@
 version: "3"
 services:
 
+# http://localhost:8081/job/test/buildWithParameters?token=jenkins&param1=test
+
   opsdroid:
     container_name: opsdroid
-    image: opsdroid/opsdroid:latest
+    image: opsdroid/opsdroid:dev
     volumes:
       - "./config/:/etc/opsdroid:ro"
       - "./modules/:/root/.opsdroid/modules/opsdroid-modules/skill"
     ports:
     - "8080:8080"
+    links:
+    - jenkins:jenkins
 
   jenkins:
     container_name: jenkins
     image: jenkins:latest
     volumes:
       - "./jenkins/:/var/jenkins_home"
+    expose:
+      - "8081"
     ports:
       - "8081:8080"
     restart: "always"
+
+  mail:
+    container_name: mail
+    image: namshi/smtp
+    ports:
+      - '10025:25'
+
