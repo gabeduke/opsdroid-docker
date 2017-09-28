@@ -1,3 +1,4 @@
 build-confirm:
-  - 'n00b'
-  - 'newbie'
+  - 'Your job has been executed'
+  - 'Consider it done!'
+  - 'Job well done & building'

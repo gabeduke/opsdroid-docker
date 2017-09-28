@@ -2,6 +2,8 @@
 
 This repository makes it easy to extend the opsdroid bot with custom modules using Docker and Docker-Compose. Custom modules and configurations are mounted into a docker container running opsdroid, without the overhead of obsdroid libraries in your development environment. This project assumes that you are already familiar with extending opsdroid, please reference the official [documentation](http://opsdroid.readthedocs.io/en/latest/configuration-reference/) for more information. More information on debugging your module in Intellij can be found [below](Debugging).
 
+Provided is an example connection to Jenkins as a self contained docker-compose package. The `jenkins_home` directory is mounted to the project workspace for persistant data.
+
 *Deploy:*
 
 To deploy a bot using this repository, you will likely want to fork the project so you can track custom module changes. When you're ready to deploy to your production server, simply pull the repository and from the project root run `docker-compose up -d`.
@@ -21,14 +23,22 @@ You will need the opsdroid packaged installed as a library in order to develop y
 ## Usage:
 
 *to run*
+
 * (from project root): `docker-compose up --build`, use the `-d` flag to run as a daemon
+
+    *Jenkins:* 
+
+    * After running compose up, get the first time token from docker logs `docker logs jenkins` and finish the install steps at [localhost:8081](http://localhost:8081/)
+    * Create a job with no parameters called builder
+    * Copy the config file [config/jenkins_credentials.yaml.example](config/jenkins_credentials.yaml.example) to `config/jenkins_credentials.yaml` with the username and password your just created
+    * Connect to the [websocket](localhost:8080) and type `build`. You will see that the newly created job is executed
 
 *to extend:*
 
 * Customise `config/configuration.yaml` according to he [documentation conventions](http://opsdroid.readthedocs.io/en/latest/configuration-reference/)
 * add a skill module to the `modules/` directory. This will be mounted to the container into the opsdroid `skills/` directory
 
-## Debugging:
+## Debugging (incomplete):
 
 * This repository is optimized for development in Intellij and includes a run configuration for the docker enviornment.
     * You will need to build an image to reference: `docker-compose build`
