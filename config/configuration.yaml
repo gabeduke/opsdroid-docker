@@ -26,7 +26,7 @@ connectors:
   - name: websocket
 skills:
   - name: builder
-    path: /root/.opsdroid/modules/opsdroid-modules/skill/builder
+    path: /usr/src/app/modules/builder
     language: !include language.yaml
     credentials: !include jenkins_credentials.yaml
 
