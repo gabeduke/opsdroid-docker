@@ -25,6 +25,8 @@ parsers:
 connectors:
   - name: websocket
 skills:
-  - name: test
-    path: /root/.opsdroid/modules/opsdroid-modules/skill/test
+  - name: builder
+    path: /root/.opsdroid/modules/opsdroid-modules/skill/builder
     language: !include language.yaml
+    credentials: !include jenkins_credentials.yaml
+

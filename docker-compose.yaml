@@ -6,6 +6,9 @@ services:
   opsdroid:
     container_name: opsdroid
     image: opsdroid/opsdroid:dev
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
     volumes:
       - "./config/:/etc/opsdroid:ro"
       - "./modules/:/root/.opsdroid/modules/opsdroid-modules/skill"

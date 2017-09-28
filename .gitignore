@@ -54,3 +54,7 @@ crashlytics-build.properties
 fabric.properties
 /jenkins/
 **/__pycache__
+/config/jenkins_credentials.yaml
+.idea/inspectionProfiles/
+container_settings.json
+runner.py
