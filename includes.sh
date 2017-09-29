@@ -4,7 +4,7 @@
 dcao-include -o docker-compose-includes.yaml includes.yaml
 
 # merge docker-compose files
-dcao-merge -o docker-compose-prod.yaml docker-compose.yaml docker-compose-includes.yaml
+dcao-merge -o docker-compose.yaml docker-compose-core.yaml docker-compose-includes.yaml
 
 # Run opsdroid docker-compose cluster
-/home/gabeduke/repos/opsdroid-docker/config
+docker-compose up -d
