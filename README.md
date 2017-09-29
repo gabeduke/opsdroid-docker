@@ -13,6 +13,7 @@ To deploy a bot using this repository, you will likely want to fork the project 
 *Docker:*
 * You will need to install [docker](https://docs.docker.com/engine/installation/)
 * You will need to install [docker-compose](https://docs.docker.com/compose/install/)
+* you will need to install [compose-addons](https://github.com/dnephin/compose-addons): `pip install compose-addons`
 
 *Packages and Env:*
 

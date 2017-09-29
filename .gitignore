@@ -58,3 +58,5 @@ fabric.properties
 .idea/inspectionProfiles/
 container_settings.json
 runner.py
+/.idea/
+/opsdroid-docker.iml
