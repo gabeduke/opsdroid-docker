@@ -25,8 +25,8 @@ parsers:
 connectors:
   - name: websocket
 skills:
-  - name: builder
-    path: /usr/src/app/modules/builder
+  - name: jenkins
+    repo: https://github.com/gabeduke/opsdroid-jenkins
     language: !include language.yaml
     credentials: !include jenkins_credentials.yaml
 

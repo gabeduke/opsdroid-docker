@@ -1,0 +1,4 @@
+include:
+  - https://raw.githubusercontent.com/gabeduke/opsdroid-jenkins/master/docker-compose.yaml
+
+namespace: core

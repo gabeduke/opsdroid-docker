@@ -1,10 +1,8 @@
 version: "3"
 services:
 
-  namespace: opsdroid
-
-  opsdroid.opsdroid:
+  opsdroid:
     container_name: opsdroid
     image: opsdroid/opsdroid:dev
     volumes:
-      - ./config/ /etc/opsdroid
+      - ./config/:/etc/opsdroid

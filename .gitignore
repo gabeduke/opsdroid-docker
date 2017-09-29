@@ -60,3 +60,5 @@ container_settings.json
 runner.py
 /.idea/
 /opsdroid-docker.iml
+/docker-compose-includes.yaml
+/docker-compose-prod.yaml

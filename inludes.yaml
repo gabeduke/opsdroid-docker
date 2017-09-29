@@ -1,5 +1,0 @@
-include:
-    - docker-compose.yaml
-    - https://github.com/gabeduke/opsdroid-jenkins
-
-namespace: opsdroid
