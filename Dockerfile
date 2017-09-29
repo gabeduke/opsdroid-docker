@@ -3,7 +3,7 @@ FROM python:3.5-alpine
 RUN apk update && \
     apk add git
 
-RUN git clone https://github.com/opsdroid/opsdroid.git:master /usr/src/app
+RUN git clone -b master https://github.com/opsdroid/opsdroid.git /usr/src/app
 WORKDIR /usr/src/app
 
 COPY ./config/ /ect/opsdroid
