@@ -62,3 +62,4 @@ runner.py
 /opsdroid-docker.iml
 /docker-compose-includes.yaml
 /docker-compose-prod.yaml
+/docker-compose.yaml

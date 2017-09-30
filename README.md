@@ -53,7 +53,7 @@ The compose core file is used as a base when *dcao* merges compose files togethe
 
 #### `build_stack.sh`
 
-Build stack is a simple shell script to run the deploy pipeline from start to finish. 
+Build stack is a simple shell script to run the deploy pipeline from start to finish. After running the build stack, the new `docker-compose.yaml` can be used for future deployments.
 
 #### `./config`
 
