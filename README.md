@@ -1,53 +1,60 @@
 # Docker-Compose Opsdroid
 
-This repository makes it easy to extend the opsdroid bot with custom modules using Docker and Docker-Compose. Custom modules and configurations are mounted into a docker container running opsdroid, without the overhead of obsdroid libraries in your development environment. This project assumes that you are already familiar with extending opsdroid, please reference the official [documentation](http://opsdroid.readthedocs.io/en/latest/configuration-reference/) for more information. More information on debugging your module in Intellij can be found [below](Debugging).
+*TL/DR*
+This repository will quickly deploy the opsdroid bot alongside a Jenkins instance in docker containers using docker-compose. using a connector of your choice you can easily build jobs. This also provides a template how to use docker-compose to deploy an opsdroid bot alonside a service of your choice. To use your new skill, simply modify the `includes.yaml` file to pull in your skill's docker-compose file.
 
-Provided is an example connection to Jenkins as a self contained docker-compose package. The `jenkins_home` directory is mounted to the project workspace for persistant data.
+This repository makes it easy to extend the opsdroid bot with custom modules using Docker and Docker-Compose. This project assumes that you are already familiar with using opsdroid, please reference the official [documentation](http://opsdroid.readthedocs.io/en/latest/configuration-reference/) for more information. 
+
+In the provided is an example connection to Jenkins, the `jenkins_home` directory is mounted to `.jenkins_home`. This directory can be copied to wherever you intend to deploy your final project. To deploy a bot using this repository, first make sure you have the pre-requisites installed (listed below). You will likely want to clone the skills that will be used into a sibling directory. You will need to adjust the `includes.yaml` file to the relative path to the skill directory. You will need to modify any paths in the skill `docker-compose.yaml` file as well. All configurations are mounted from the config directory, you will want to add any connectors or skills that you have in your normal configuration file.
+
+
+## Run
+
+*Setup:*
+* Make sure you have the [prerequisites](Prerequisites) installed.
+* in the `config` directory in this repository, copy `jenkins_credentials.yaml.example` to `jenkins_credentials.yaml` with the username and password you intend to use when setting up Jenkins. This will allow the opsdroid bot to connect and build jobs. You may also want to add any skills or customizations from another opsdroid configuration to the `configuration.yaml` file.
 
 *Deploy:*
+* Run `./build_stack.sh`. This will pull in the remote docker-compose file for the Opsdroid-Jenkins skill, merge it with the docker-compose file in this repository, and deploy the bot container alongside a jenkins instace.
+    * Verify the containers are running: `docker ps`
+    * Verify the bot is running: `docker logs opsdroid` (`CTRL + C` to exit)
+    * Verify Jenkins is running: `docker logs jenkins`. On first run, make sure you grab the *First Time Authentication Token* (`CTRL + C` to exit)
+    
+*Usage:*
+* You can access jenkins at [localhost:8080](http://localhost:8081). The first time access token can be found by running `docker logs jenkins` in a terminal
+    * If following the example then you will need to create a jenkins job called `builder` that takes no parameters
+* Using the opsdroid desktop connector, type `build`. If you navigate back to jenkins in your browser, you will see the job queue and execute. 
 
-To deploy a bot using this repository, you will likely want to fork the project so you can track custom module changes. When you're ready to deploy to your production server, simply pull the repository and from the project root run `docker-compose up -d`.
 
 ## Prerequisites:
+
+*Opsdroid Connector*
+* To follow the example in this tutorial you will want to have the [Opsdroid Desktop Client](https://github.com/opsdroid/opsdroid-desktop) installed. This will allow communication via websocket to the containerized bot.
 
 *Docker:*
 * You will need to install [docker](https://docs.docker.com/engine/installation/)
 * You will need to install [docker-compose](https://docs.docker.com/compose/install/)
 * you will need to install [compose-addons](https://github.com/dnephin/compose-addons): `pip install compose-addons`
 
-*Packages and Env:*
 
-You will need the opsdroid packaged installed as a library in order to develop your modules. These steps may be skipped if you already have a module built and just wish to run the bot. However, if you need to reference opsdroid for debugging or import purposes, these steps will be important.
-* Set up a virtualenv & activate: `virtualenv --python=/usr/bin/python3.6 .env && . .env/bin/activate`
-* Install opsdroid: `pip3 install opsdroid`
+## Project Structure:
 
-## Usage:
+This section provides more detail into how this repository operates & details how to use docker-compose with opsdroid.
 
-*to run*
+---
 
-* (from project root): `docker-compose up --build`, use the `-d` flag to run as a daemon
+#### `Includes.yaml`
 
-    *Jenkins:* 
+The includes file is what brings in remote docker-compose files. The sytax is important for allowing *docker-compose addons* (*dcao*) to perform it's magic. I recommend building your custom opsdroid skills in a sibling directory to this project and using the relative path to the compose file in the `includes.yaml` file. The namespace is also important for *dcao* to tie multiple compose files together
 
-    * After running compose up, get the first time token from docker logs `docker logs jenkins` and finish the install steps at [localhost:8081](http://localhost:8081/)
-    * Create a job with no parameters called builder
-    * Copy the config file [config/jenkins_credentials.yaml.example](config/jenkins_credentials.yaml.example) to `config/jenkins_credentials.yaml` with the username and password your just created
-    * Connect to the [websocket](localhost:8080) and type `build`. You will see that the newly created job is executed
+#### `Docker-Compose-core.yaml`
 
-*to extend:*
+The compose core file is used as a base when *dcao* merges compose files together. Anything defined here will be over written if re-defined in subsequent compose files in the `includes.yaml` 
 
-* Customise `config/configuration.yaml` according to he [documentation conventions](http://opsdroid.readthedocs.io/en/latest/configuration-reference/)
-* add a skill module to the `modules/` directory. This will be mounted to the container into the opsdroid `skills/` directory
+#### `build_stack.sh`
 
-## Debugging (incomplete):
+Build stack is a simple shell script to run the deploy pipeline from start to finish. 
 
-* This repository is optimized for development in Intellij and includes a run configuration for the docker enviornment.
-    * You will need to build an image to reference: `docker-compose build`
-    * In terminal, get the image id for the container that was created `docker ps -aqf "name=opsdroid"`
-    * In the Edit configurations menu, you will need to replace the image id with the referece from the previous step
-    * You can now run the container directly through Intellij `Shift + F10` or debug `Shift + F9`
-    
-## Jenkins
+#### `./config`
 
-* After running compose up, get the first time token from docker logs `docker logs jenkins` and finish the install steps at [localhost:8081](http://localhost:8081/)
-* get your api token from [localhost:8081/me/configure](http://localhost:8081/me/configure)
+Opsdroid allows the syntax `!include` in it's configuration files and referenced by relative paths. If you extend your skill configuration using includes, you can host them in this directory. The entire directory is mounted into the container and should provide all of the necessary configuration the opsdroid container needs to operate. 
