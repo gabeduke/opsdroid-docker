@@ -1,6 +1,7 @@
 *.iml
 /.idea/
 /config/jenkins_credentials.yaml
+/config/configuration.yaml
 /opsdroid-docker.iml
 /docker-compose-includes.yaml
 /docker-compose-prod.yaml
