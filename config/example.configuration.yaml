@@ -12,5 +12,5 @@ connectors:
 skills:
   - name: opsdroid-jenkins
     path: modules/opsdroid-jenkins
-    language: !include modules/opsdroid-jenkins/language.yaml
+    credentials: !include jenkins_credentials.yamls
     jenkins_url: 'http://jenkins:8080'
