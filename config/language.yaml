@@ -1,4 +1,0 @@
-build-confirm:
-  - 'Your job has been executed'
-  - 'Consider it done!'
-  - 'Job well done & building'

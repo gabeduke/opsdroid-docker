@@ -5,3 +5,5 @@
 /docker-compose-includes.yaml
 /docker-compose-prod.yaml
 /docker-compose.yaml
+/config/modules/*
+!/config/__init__.py
