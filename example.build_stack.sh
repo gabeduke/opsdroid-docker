@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# otherwise docker daemon will create with root level permission
+mkdir -p ~/.jenkins_home
+
 # pull in external docker-compose files
 git clone \
     -b docker-compose \

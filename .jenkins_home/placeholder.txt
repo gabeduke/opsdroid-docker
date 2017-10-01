@@ -1,1 +1,0 @@
-This directory is a placeholder so the jenkins user in the docker container has the correct permissions to create directories & files.

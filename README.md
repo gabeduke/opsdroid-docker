@@ -47,7 +47,7 @@ This section provides more detail into how this repository operates & details ho
 
 The compose core file is used as a base when *dcao* merges compose files together. Anything defined here will be over written if re-defined in subsequent compose files in the `includes.yaml` 
 
-#### `build_stack.sh`
+#### `example.build_stack.sh`
 
 Build stack is a simple shell script to run the deploy pipeline from start to finish. After running the build stack, the new `docker-compose.yaml` can be used for future deployments.
 
