@@ -1,6 +1,8 @@
 # Docker-Compose Opsdroid
 
 *TL/DR*
+
+
 This repository will quickly deploy the opsdroid bot alongside a Jenkins instance in docker containers using docker-compose. using a connector of your choice you can easily build jobs. This also provides a template how to use docker-compose to deploy an opsdroid bot alonside a service of your choice. 
 
 This repository makes it easy to extend the opsdroid bot with custom modules using Docker and Docker-Compose. This project assumes that you are already familiar with using opsdroid, please reference the official [documentation](http://opsdroid.readthedocs.io/en/latest/configuration-reference/) for more information. 
@@ -12,11 +14,12 @@ In the provided is an example connection to Jenkins, the `jenkins_home` director
 
 *Setup:*
 * Make sure you have the [prerequisites](Prerequisites) installed.
-* Copy `config/jenkins_credentials.yaml.example` to `config/jenkins_credentials.yaml` with the username and password you intend to use when setting up Jenkins. This will allow the opsdroid bot to connect and build jobs.
-* Copy `config/example.configuration.yaml` to `config/configuration.yaml`. You may also want to add any skills or customizations from another opsdroid configuration. However, be advised that there are some configurations that are necessary for opsdroid to function well in a container.
 
 *Deploy:*
-* Run `./build_stack.sh`. This will pull in the remote docker-compose file for the Opsdroid-Jenkins skill, merge it with the docker-compose file in this repository, and deploy the bot container alongside a jenkins instance.
+* run `example.build_stack.sh`: This will pull in the remote docker-compose file for the Opsdroid-Jenkins skill, merge it with the docker-compose file in this repository, and deploy the bot container alongside a jenkins instance.
+    * Optional Configuration steps:
+        * Edit `config/jenkins_credentials.yaml` to match the credentials you intend on using for jenkins
+        * Edit `config/configuration.yaml` to include any skills or customizations from another opsdroid configuration. However, be advised that there are some configurations that are necessary for opsdroid to function well in a container. There are no customizations necessary for this example to function.
     * Verify the containers are running: `docker ps`
     * Verify the bot is running: `docker logs opsdroid` (`CTRL + C` to exit)
     * Verify Jenkins is running: `docker logs jenkins`. On first run, make sure you grab the *First Time Authentication Token* (`CTRL + C` to exit)
