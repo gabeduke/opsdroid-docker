@@ -3,6 +3,6 @@ services:
 
   opsdroid:
     container_name: opsdroid
-    image: opsdroid/opsdroid:dev
-    volumes:
-      - ./config/:/etc/opsdroid
+    build:
+      context: .
+      dockerfile: Dockerfile

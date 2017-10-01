@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # pull in external docker-compose files
-dcao-include -o docker-compose-includes.yaml includes.yaml
+git clone https://github.com/gabeduke/opsdroid-jenkins:docker-compose modules/docker-compose
 
 # merge docker-compose files
-dcao-merge -o docker-compose.yaml docker-compose-core.yaml docker-compose-includes.yaml
+docker-compose -f docker-compose-core.yaml -f config/modules/opsdroid-jenkins/docker-compose.yaml config > docker-compose.yaml
 
 # Run opsdroid docker-compose cluster
-docker-compose up -d
+docker-compose up -d --build

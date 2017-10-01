@@ -1,5 +1,0 @@
-include:
-  # if developing locally, this can be a relative path to a compose file in another directory
-  - https://raw.githubusercontent.com/gabeduke/opsdroid-jenkins/master/docker-compose.yaml
-
-namespace: core
