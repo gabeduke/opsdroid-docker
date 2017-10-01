@@ -5,7 +5,6 @@ mkdir -p ~/.jenkins_home
 
 # pull in external docker-compose files
 git clone \
-    -b docker-compose \
     https://github.com/gabeduke/opsdroid-jenkins \
     config/modules/opsdroid-jenkins
 
