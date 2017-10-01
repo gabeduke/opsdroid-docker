@@ -14,5 +14,5 @@ docker-compose \
     -f config/modules/opsdroid-jenkins/docker-compose.yaml \
     config > docker-compose.yaml
 
-# Run opsdroid docker-compose cluster
+# Run opsdroid docker cluster
 docker-compose up -d --build
